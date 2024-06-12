@@ -5,6 +5,8 @@ const btnEquals = document.querySelector("#btn-equals");
 const btnClear = document.querySelector("#btn-clear");
 
 const calcStates = ["numA", "op", "numB", "result"];
+const DIVIDE_BY_ZERO = "Error: division by 0";
+
 let calcState = calcStates[0];
 
 let numA;
@@ -24,6 +26,7 @@ function multiply (a, b) {
 }
 
 function divide (a, b) {
+  if (parseFloat(b) == 0) alert(DIVIDE_BY_ZERO);
   return parseFloat(a) / parseFloat(b);
 }
 
