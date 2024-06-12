@@ -1,7 +1,8 @@
 const display = document.querySelector("#display");
-const nums = document.querySelector("#nums")
-const ops = document.querySelector("#ops");
+const btnNums = document.querySelector("#nums")
+const btnOps = document.querySelector("#ops");
 const btnEquals = document.querySelector("#btn-equals");
+const btnClear = document.querySelector("#btn-clear");
 
 const calcStates = ["numA", "op", "numB", "result"];
 let calcState = calcStates[0];
@@ -39,7 +40,7 @@ function operate (numA, op, numB) {
   }
 }
 
-nums.addEventListener("click", (event) => {
+btnNums.addEventListener("click", (event) => {
   let target = event.target;
   switch (calcState) {
     case calcStates[0]:
@@ -62,7 +63,7 @@ nums.addEventListener("click", (event) => {
   }
 });
 
-ops.addEventListener("click", (event) => {
+btnOps.addEventListener("click", (event) => {
   let target = event.target;
   switch (calcState) {
     case calcStates[2]:
@@ -76,7 +77,7 @@ ops.addEventListener("click", (event) => {
   calcState = calcStates[1];
 });
 
-btnEquals.addEventListener("click", (event) => {
+btnEquals.addEventListener("click", (_) => {
   switch (calcState) {
     case calcStates[1]:
     case calcStates[2]:
@@ -88,4 +89,9 @@ btnEquals.addEventListener("click", (event) => {
       numA = display.textContent;
       display.textContent = operate(numA, op, numB);
   }
+});
+
+btnClear.addEventListener("click", (_) => {
+  display.textContent = "0";
+  calcState = calcStates[0];
 });
